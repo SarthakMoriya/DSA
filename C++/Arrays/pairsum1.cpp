@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+#include<vector>
+int main()
+{
+    int arr[] = {1, 2, 3, 4, 5,6};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    // int sum = 0;
+    vector<int>ans;
+    // cout<<size;
+    for (int i = 0; i < size; i++)
+    {
+        // cout<<i<<" ";
+        for (int j = 0; j < size; j++)
+        {
+            // cout<<j<<" ";
+            if (i == j)
+                continue;
+
+            if (arr[i] + arr[j] > 8)
+                break;
+
+            if ((arr[i] + arr[j]) == 8)
+            {
+                cout << "Pair Sum:::" << arr[i] << " " << arr[j] << endl;
+                ans.push_back(arr[i]);
+                ans.push_back(arr[j]);
+            }
+        }
+    }
+    // cout<<ans.size()<endl;
+
+    for(int k=0; k<ans.size(); k++)
+    {
+         cout<<ans[k]<<" ";
+    }
+    return 0;
+}
