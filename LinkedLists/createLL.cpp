@@ -123,6 +123,77 @@ void insertAtIndex(Node *&head, int data, int index)
     temp->next = node;
 }
 
+void deleteAtHead(Node *&head)
+{
+    if (head == NULL)
+    {
+        cout << "Empty LL cannot perform deletion!";
+        return;
+    }
+
+    Node *temp = head;
+    head = head->next;
+    temp->next = NULL;
+    delete temp;
+}
+
+void deleteAtTail(Node *&head)
+{
+    if (head == NULL)
+    {
+        cout << "Empty LL cannot perform deletion!";
+        return;
+    }
+
+    Node *temp = head;
+    Node *prev = NULL;
+    while (temp->next != NULL)
+    {
+        prev = temp;
+        temp = temp->next;
+    }
+    if (prev == NULL)
+    {
+        deleteAtHead(head);
+        return;
+    }
+    prev->next = NULL;
+    delete temp;
+}
+
+void deleteByValue(Node *&head, int data)
+{
+    if (head == NULL)
+    {
+        cout << "Empty LL cannot perform deletion!";
+        return;
+    }
+
+    Node *prev = NULL;
+    Node *temp = head;
+
+    while (temp != NULL && temp->data != data)
+    {
+        prev = temp;
+        temp = temp->next;
+    }
+
+    if (prev == NULL) // First node is to be deleted
+    {
+        deleteAtHead(head);
+        return;
+    }
+    if (temp == NULL)
+    {
+        cout << "Node not present!";
+        return;
+    }
+
+    prev->next = temp->next;
+    temp->next = NULL;
+    delete temp;
+}
+
 int main()
 {
     Node *head = new Node(10);
@@ -138,20 +209,48 @@ int main()
     // cout << n1;
     // traverse(head);
     // traverse(NULL);
-    cout << "Old HEAD DATA::" << head->data << endl;
+    // cout << "Old HEAD DATA::" << head->data << endl;
     // head = insertAtHead(head, 9);
     insertAtHeadWithReference(head, 9);
     // cout << "New HEAD DATA::" << head->data << endl;
-    cout << "BEFORE INSERTION" << endl;
-    traverse(head);
-    cout << "AFTER INSERTION" << endl;
+    // cout << "BEFORE INSERTION" << endl;
+    // traverse(head);
+    // cout << "AFTER INSERTION" << endl;
     insertAtTail(head, 14);
+    // traverse(head);
+
+    // cout << "Number of nodes::" << countNodes(head) << endl;
+
+    // cout << "Before Deletion:::" << endl;
+
+    insertAtIndex(head, 15, 6);
+
+    insertAtIndex(head, 8, 0);
+
     traverse(head);
 
-    cout << "Number of nodes::" << countNodes(head) << endl;
-    insertAtIndex(head,15,6);
+    // deleteAtHead(head);
+
+    // deleteAtTail(head);
+
+    // deleteAtTail(head);
+
+    // deleteAtTail(head);
+
+    // deleteAtTail(head);
+
+    // cout << "After Deletion:::" << endl;
+
+    // deleteAtTail(head);
+
+    // traverse(head);
+
+    cout << "\n";
+    deleteByValue(head, 15);
     traverse(head);
-    insertAtIndex(head,8,0);
+    cout << "\n";
+    deleteByValue(head, 13);
     traverse(head);
+
     return 0;
 }
