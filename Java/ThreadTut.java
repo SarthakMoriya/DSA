@@ -5,6 +5,7 @@ class A extends Thread {
 
     A(int d) {
         this.t = d;
+        // theis
     }
 
     int n = 1;
