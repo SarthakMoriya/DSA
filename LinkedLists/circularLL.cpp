@@ -17,7 +17,7 @@ public:
 void traverse(Node *tail)
 {
     cout << "TRAVERSING..." << endl;
-    // cout << tail->data << " ";
+    // cout << tail->data th<< " ";
     if (tail == NULL)
     {
         cout << "empty LL!";
